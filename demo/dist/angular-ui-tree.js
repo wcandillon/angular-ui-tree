@@ -1202,11 +1202,11 @@
             };
             bindDrag();
 
-            scope.$on('startDrag', function(e){
+            scope.$on('startDrag', function(e, event){
               console.log('startDrag');
               dragDelaying = true;
               dragStarted = false;
-              dragStartEvent(e);
+              dragStartEvent(event);
             });
 
             angular.element($window.document.body).bind("keydown", function(e) {
