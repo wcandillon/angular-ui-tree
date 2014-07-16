@@ -412,6 +412,12 @@
             };
             bindDrag();
 
+            scope.$on('restartDrag', function(){
+              console.log('restartDrag');
+              dragDelaying = true;
+              dragStarted = false;
+            });
+
             angular.element($window.document.body).bind("keydown", function(e) {
               if (e.keyCode == 27) {
                 scope.$$apply = false;
