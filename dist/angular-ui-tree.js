@@ -793,8 +793,8 @@
 
   angular.module('ui.tree')
 
-    .directive('uiTreeNode', ['treeConfig', '$uiTreeHelper', '$window', '$document','$timeout',
-      function (treeConfig, $uiTreeHelper, $window, $document, $timeout) {
+    .directive('uiTreeNode', ['treeConfig', '$uiTreeHelper', '$window', '$document','$timeout', '$rootScope',
+      function (treeConfig, $uiTreeHelper, $window, $document, $timeout, $rootScope) {
         return {
           require: ['^uiTreeNodes', '^uiTree'],
           restrict: 'A',
@@ -1202,10 +1202,9 @@
             };
             bindDrag();
 
-            scope.$on('startDrag', function(e, event){
-              console.log('startDrag');
-              dragDelaying = true;
-              dragStarted = false;
+            $rootScope.$on('dragRestart', function(e, event){
+              console.log('restart');
+              dragEnd(event);
               dragStartEvent(event);
             });
 
